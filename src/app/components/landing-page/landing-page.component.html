@@ -21,6 +21,7 @@
       <ul class="nav-menu" [class.active]="menuOpen">
         <li><a href="#home" class="nav-link" (click)="closeMenu()">{{ 'nav.home' | translate }}</a></li>
         <li><a href="#sobre" class="nav-link" (click)="closeMenu()">{{ 'nav.about' | translate }}</a></li>
+        <li><a href="#clientes" class="nav-link" (click)="closeMenu()">{{ 'nav.clients' | translate }}</a></li>
         <li><a href="#servicos" class="nav-link" (click)="closeMenu()">{{ 'nav.services' | translate }}</a></li>
         <li><a href="#orcamento" class="nav-link btn-orcamento" (click)="closeMenu()">{{ 'nav.budget' | translate }}</a></li>
         <li class="nav-controls">
@@ -98,32 +99,99 @@
         </div>
       </div>
       <div class="sobre-image scroll-animate">
-        <div class="feedback-carousel">
-          <div class="feedback-container">
-            <div 
-              *ngFor="let feedbackId of currentFeedbacks; let i = index" 
-              class="feedback-bubble"
-              [class.active]="i === activeFeedbackIndex"
-            >
-              <div class="bubble-content">
-                <div class="quote-icon">💬</div>
-                <p class="feedback-text">{{ 'feedback.' + feedbackId + '.text' | translate }}</p>
-                <div class="feedback-author">
-                  <strong>{{ 'feedback.' + feedbackId + '.author' | translate }}</strong>
-                  <span>{{ 'feedback.' + feedbackId + '.role' | translate }}</span>
-                </div>
-              </div>
-              <div class="bubble-arrow"></div>
-            </div>
+        <img src="assets/images/team-collaboration.jpg" alt="Equipe SENTS" class="team-image">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Clientes Section -->
+<section id="clientes" class="clientes" [attr.data-theme]="currentTheme">
+  <div class="container">
+    <div class="section-header scroll-animate">
+      <h2 class="section-title">{{ 'clients.title' | translate }}</h2>
+      <p class="section-subtitle">{{ 'clients.subtitle' | translate }}</p>
+    </div>
+    <div class="testimonials-carousel">
+      <div class="carousel-track" #carouselTrack>
+        <div class="testimonial-slide">
+          <div class="testimonial-rating">
+            <span class="star">⭐</span>
+            <span class="star">⭐</span>
+            <span class="star">⭐</span>
+            <span class="star">⭐</span>
+            <span class="star">⭐</span>
           </div>
-          <div class="carousel-dots">
-            <span 
-              *ngFor="let dot of [0,1,2]; let i = index" 
-              class="dot"
-              [class.active]="i === activeFeedbackIndex"
-            ></span>
+          <p class="testimonial-text">{{ 'feedback.1.text' | translate }}</p>
+          <div class="testimonial-author">
+            <strong>{{ 'feedback.1.author' | translate }}</strong>
+            <span>{{ 'feedback.1.role' | translate }}</span>
           </div>
         </div>
+        <div class="testimonial-slide">
+          <div class="testimonial-rating">
+            <span class="star">⭐</span>
+            <span class="star">⭐</span>
+            <span class="star">⭐</span>
+            <span class="star">⭐</span>
+            <span class="star">⭐</span>
+          </div>
+          <p class="testimonial-text">{{ 'feedback.2.text' | translate }}</p>
+          <div class="testimonial-author">
+            <strong>{{ 'feedback.2.author' | translate }}</strong>
+            <span>{{ 'feedback.2.role' | translate }}</span>
+          </div>
+        </div>
+        <div class="testimonial-slide">
+          <div class="testimonial-rating">
+            <span class="star">⭐</span>
+            <span class="star">⭐</span>
+            <span class="star">⭐</span>
+            <span class="star">⭐</span>
+            <span class="star">⭐</span>
+          </div>
+          <p class="testimonial-text">{{ 'feedback.3.text' | translate }}</p>
+          <div class="testimonial-author">
+            <strong>{{ 'feedback.3.author' | translate }}</strong>
+            <span>{{ 'feedback.3.role' | translate }}</span>
+          </div>
+        </div>
+        <div class="testimonial-slide">
+          <div class="testimonial-rating">
+            <span class="star">⭐</span>
+            <span class="star">⭐</span>
+            <span class="star">⭐</span>
+            <span class="star">⭐</span>
+            <span class="star">⭐</span>
+          </div>
+          <p class="testimonial-text">{{ 'feedback.4.text' | translate }}</p>
+          <div class="testimonial-author">
+            <strong>{{ 'feedback.4.author' | translate }}</strong>
+            <span>{{ 'feedback.4.role' | translate }}</span>
+          </div>
+        </div>
+        <div class="testimonial-slide">
+          <div class="testimonial-rating">
+            <span class="star">⭐</span>
+            <span class="star">⭐</span>
+            <span class="star">⭐</span>
+            <span class="star">⭐</span>
+            <span class="star">⭐</span>
+          </div>
+          <p class="testimonial-text">{{ 'feedback.5.text' | translate }}</p>
+          <div class="testimonial-author">
+            <strong>{{ 'feedback.5.author' | translate }}</strong>
+            <span>{{ 'feedback.5.role' | translate }}</span>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-dots">
+        <span 
+          *ngFor="let dot of [0,1,2,3,4]; let i = index" 
+          class="dot"
+          [class.active]="i === activeFeedbackIndex"
+          (click)="scrollToSlide(i)"
+        ></span>
       </div>
     </div>
   </div>
@@ -231,6 +299,7 @@
         <ul>
           <li><a href="#home">{{ 'nav.home' | translate }}</a></li>
           <li><a href="#sobre">{{ 'nav.about' | translate }}</a></li>
+          <li><a href="#clientes">{{ 'nav.clients' | translate }}</a></li>
           <li><a href="#servicos">{{ 'nav.services' | translate }}</a></li>
           <li><a href="#orcamento">{{ 'nav.budget' | translate }}</a></li>
         </ul>

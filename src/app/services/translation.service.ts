@@ -11,6 +11,7 @@ export class TranslationService {
   private translations: any = {
     'nav.home': { pt: 'Home', en: 'Home' },
     'nav.about': { pt: 'Sobre', en: 'About' },
+    'nav.clients': { pt: 'Clientes', en: 'Clients' },
     'nav.services': { pt: 'Serviços', en: 'Services' },
     'nav.budget': { pt: 'Orçamento', en: 'Budget' },
     
@@ -24,6 +25,10 @@ export class TranslationService {
     'about.who.title': { pt: 'Quem Somos', en: 'Who We Are' },
     'about.who.text1': { pt: 'A SENTS é uma fábrica de software dedicada a criar soluções tecnológicas inovadoras e personalizadas. Com uma equipe altamente qualificada, transformamos desafios complexos em sistemas eficientes e escaláveis.', en: 'SENTS is a software factory dedicated to creating innovative and customized technological solutions. With a highly qualified team, we transform complex challenges into efficient and scalable systems.' },
     'about.who.text2': { pt: 'Nossa missão é impulsionar o sucesso dos nossos clientes através da tecnologia, entregando produtos de alta qualidade que superam expectativas.', en: 'Our mission is to drive our clients\' success through technology, delivering high-quality products that exceed expectations.' },
+    
+    'clients.title': { pt: 'Clientes que confiaram na SENTS', en: 'Clients who trusted SENTS' },
+    'clients.subtitle': { pt: 'Seja você um pequeno ou médio negócio, vamos juntos construir o seu futuro digital!', en: 'Whether you are a small or medium business, let\'s build your digital future together!' },
+    
     'about.stats.projects': { pt: 'Projetos Concluídos', en: 'Completed Projects' },
     'about.stats.satisfaction': { pt: 'Satisfação dos Clientes', en: 'Client Satisfaction' },
     'about.stats.clients': { pt: 'Clientes Ativos', en: 'Active Clients' },
@@ -59,22 +64,27 @@ export class TranslationService {
     'feedback.1.text': { pt: 'A SENTS transformou completamente nossa operação digital. O sistema desenvolvido superou todas as expectativas e trouxe resultados impressionantes!', en: 'SENTS completely transformed our digital operation. The system developed exceeded all expectations and brought impressive results!' },
     'feedback.1.author': { pt: 'Carlos Silva', en: 'Carlos Silva' },
     'feedback.1.role': { pt: 'CEO - TechCorp', en: 'CEO - TechCorp' },
+    'feedback.1.rating': { pt: '5', en: '5' },
     
     'feedback.2.text': { pt: 'Profissionalismo e qualidade excepcionais. A equipe da SENTS entendeu perfeitamente nossas necessidades e entregou uma solução perfeita.', en: 'Exceptional professionalism and quality. The SENTS team perfectly understood our needs and delivered a perfect solution.' },
     'feedback.2.author': { pt: 'Maria Santos', en: 'Maria Santos' },
     'feedback.2.role': { pt: 'Diretora de TI - Innovate', en: 'IT Director - Innovate' },
+    'feedback.2.rating': { pt: '5', en: '5' },
     
     'feedback.3.text': { pt: 'Excelente parceria! O app desenvolvido pela SENTS aumentou nossa produtividade em 40%. Recomendo fortemente!', en: 'Excellent partnership! The app developed by SENTS increased our productivity by 40%. Highly recommend!' },
     'feedback.3.author': { pt: 'João Oliveira', en: 'João Oliveira' },
     'feedback.3.role': { pt: 'Gerente - LogisticPro', en: 'Manager - LogisticPro' },
+    'feedback.3.rating': { pt: '5', en: '5' },
     
     'feedback.4.text': { pt: 'Suporte impecável e sistema robusto. A SENTS nos ajudou a modernizar completamente nossa infraestrutura.', en: 'Impeccable support and robust system. SENTS helped us completely modernize our infrastructure.' },
     'feedback.4.author': { pt: 'Ana Costa', en: 'Ana Costa' },
     'feedback.4.role': { pt: 'CTO - FinanceHub', en: 'CTO - FinanceHub' },
+    'feedback.4.rating': { pt: '5', en: '5' },
     
     'feedback.5.text': { pt: 'Equipe altamente capacitada e comprometida. O projeto foi entregue antes do prazo e com qualidade superior!', en: 'Highly skilled and committed team. The project was delivered ahead of schedule and with superior quality!' },
     'feedback.5.author': { pt: 'Pedro Almeida', en: 'Pedro Almeida' },
-    'feedback.5.role': { pt: 'Fundador - StartupX', en: 'Founder - StartupX' }
+    'feedback.5.role': { pt: 'Fundador - StartupX', en: 'Founder - StartupX' },
+    'feedback.5.rating': { pt: '5', en: '5' }
   };
 
   constructor() {

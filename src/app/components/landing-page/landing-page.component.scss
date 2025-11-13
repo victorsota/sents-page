@@ -497,118 +497,16 @@ $dark-border: #1e293b;
     }
 
     .sobre-image {
-      .feedback-carousel {
+      .team-image {
         width: 100%;
-        height: 450px;
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
+        height: 400px;
+        object-fit: cover;
+        border-radius: 12px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
 
-        .feedback-container {
-          position: relative;
-          width: 100%;
-          height: 380px;
-
-          .feedback-bubble {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            opacity: 0;
-            transform: translateY(30px) scale(0.95);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-            pointer-events: none;
-
-            &.active {
-              opacity: 1;
-              transform: translateY(0) scale(1);
-              pointer-events: auto;
-              z-index: 1;
-            }
-
-            .bubble-content {
-              background: $primary-color;
-              border-radius: 20px;
-              padding: 2.5rem;
-              box-shadow: 0 15px 50px rgba(0, 174, 239, 0.15);
-              position: relative;
-              border: 2px solid rgba(0, 174, 239, 0.1);
-
-              .quote-icon {
-                font-size: 3rem;
-                margin-bottom: 1rem;
-                opacity: 0.7;
-                filter: grayscale(0.3);
-              }
-
-              .feedback-text {
-                color: $off-white;
-                font-size: 1.15rem;
-                line-height: 1.8;
-                margin-bottom: 1.5rem;
-                font-style: italic;
-                font-weight: 500;
-              }
-
-              .feedback-author {
-                display: flex;
-                flex-direction: column;
-                gap: 0.3rem;
-                padding-top: 1rem;
-                border-top: 2px solid rgba(255, 255, 255, 0.2);
-
-                strong {
-                  color: $secondary-color;
-                  font-size: 1.15rem;
-                  font-weight: 700;
-                }
-
-                span {
-                  color: $off-white;
-                  font-size: 0.95rem;
-                  font-weight: 500;
-                  opacity: 0.8;
-                }
-              }
-            }
-
-            .bubble-arrow {
-              position: absolute;
-              bottom: -15px;
-              left: 50%;
-              transform: translateX(-50%);
-              width: 0;
-              height: 0;
-              border-left: 20px solid transparent;
-              border-right: 20px solid transparent;
-              border-top: 20px solid $primary-color;
-              filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.05));
-            }
-          }
-        }
-
-        .carousel-dots {
-          display: flex;
-          gap: 0.8rem;
-          margin-top: 2rem;
-          justify-content: center;
-
-          .dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: $border-color;
-            cursor: pointer;
-            transition: all 0.3s ease;
-
-            &.active {
-              background: $secondary-color;
-              width: 35px;
-              border-radius: 6px;
-            }
-          }
+        &:hover {
+          transform: scale(1.02);
         }
       }
 
@@ -656,33 +554,181 @@ $dark-border: #1e293b;
       color: $dark-text-secondary !important;
     }
 
-    .feedback-carousel {
-      .feedback-bubble .bubble-content {
-        background: $dark-bg-secondary;
-        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    .team-image {
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    }
+  }
+}
 
-        .feedback-text {
-          color: $dark-text;
+// Clientes Section
+.clientes {
+  padding: 6rem 0;
+  background: $white;
+  transition: background 0.3s, color 0.3s;
+  overflow: hidden;
+
+  &[data-theme="dark"] {
+    background: $dark-bg-secondary;
+
+    .section-title {
+      color: $dark-text;
+    }
+
+    .section-subtitle {
+      color: $dark-text-secondary;
+    }
+
+    .testimonial-slide {
+      background: $dark-bg-secondary;
+      border-color: $dark-border;
+
+      .testimonial-text {
+        color: $dark-text-secondary;
+      }
+
+      .testimonial-author {
+        border-top-color: $dark-border;
+
+        strong {
+          color: $secondary-color;
         }
 
-        .feedback-author {
-          border-top-color: $dark-border;
+        span {
+          color: $dark-text-secondary;
+        }
+      }
+
+      &:hover {
+        border-color: $secondary-color;
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+      }
+    }
+
+    .carousel-dots .dot {
+      background: $dark-border;
+
+      &.active {
+        background: $secondary-color;
+      }
+    }
+  }
+
+  .testimonials-carousel {
+    position: relative;
+    width: 100%;
+    margin: 3rem auto 0;
+    padding: 2rem 0;
+
+    .carousel-track {
+      display: flex;
+      gap: 1rem;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      padding: 1rem 2rem;
+      cursor: grab;
+      user-select: none;
+      
+      &:active {
+        cursor: grabbing;
+      }
+
+      &.dragging {
+        cursor: grabbing;
+        scroll-behavior: auto;
+      }
+
+      // Esconder scrollbar mas manter funcionalidade
+      scrollbar-width: none; // Firefox
+      -ms-overflow-style: none; // IE/Edge
+      
+      &::-webkit-scrollbar {
+        display: none; // Chrome/Safari
+      }
+
+      .testimonial-slide {
+        background: $white;
+        padding: 1.5rem;
+        border-radius: 16px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+        transition: all 0.3s ease;
+        border: 2px solid $border-color;
+        flex-shrink: 0;
+        width: 320px;
+        opacity: 1;
+        transform: scale(1);
+        filter: none;
+
+        &:hover {
+          transform: translateY(-4px);
+          box-shadow: 0 12px 30px rgba(0, 174, 239, 0.15);
+          border-color: $secondary-color;
+        }
+
+        .testimonial-rating {
+          display: flex;
+          gap: 0.2rem;
+          margin-bottom: 1rem;
+
+          .star {
+            font-size: 1.1rem;
+            filter: grayscale(0);
+          }
+        }
+
+        .testimonial-text {
+          color: $text-dark;
+          font-size: 0.95rem;
+          line-height: 1.6;
+          margin-bottom: 1.5rem;
+          font-style: italic;
+          font-weight: 500;
+        }
+
+        .testimonial-author {
+          display: flex;
+          flex-direction: column;
+          gap: 0.3rem;
+          padding-top: 1rem;
+          border-top: 2px solid $border-color;
+
+          strong {
+            color: $primary-color;
+            font-size: 1rem;
+            font-weight: 700;
+          }
 
           span {
-            color: $dark-text-secondary;
+            color: $text-light;
+            font-size: 0.85rem;
+            font-weight: 500;
           }
         }
       }
+    }
 
-      .bubble-arrow {
-        border-top-color: $dark-bg-secondary;
-      }
+    .carousel-dots {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2rem;
+      justify-content: center;
 
-      .carousel-dots .dot {
-        background: $dark-border;
+      .dot {
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background: $border-color;
+        cursor: pointer;
+        transition: all 0.3s ease;
+
+        &:hover {
+          background: lighten($secondary-color, 20%);
+          transform: scale(1.2);
+        }
 
         &.active {
           background: $secondary-color;
+          width: 40px;
+          border-radius: 7px;
         }
       }
     }
@@ -692,11 +738,11 @@ $dark-border: #1e293b;
 // Serviços Section
 .servicos {
   padding: 6rem 0;
-  background: $white;
+  background: $bg-gray;
   transition: background 0.3s;
 
   &[data-theme="dark"] {
-    background: $dark-bg-secondary;
+    background: $dark-bg;
 
     .section-title {
       color: $dark-text;
@@ -1189,23 +1235,18 @@ $dark-border: #1e293b;
     grid-template-columns: 1fr;
     gap: 2rem;
 
-    .feedback-carousel {
-      height: 400px !important;
+    .team-image {
+      height: 300px;
+    }
+  }
 
-      .feedback-container {
-        height: 330px !important;
-      }
+  .clientes .testimonials-carousel {
+    .carousel-track {
+      padding: 1rem;
 
-      .feedback-bubble .bubble-content {
-        padding: 2rem !important;
-
-        .quote-icon {
-          font-size: 2.5rem !important;
-        }
-
-        .feedback-text {
-          font-size: 1rem !important;
-        }
+      .testimonial-slide {
+        width: 280px;
+        padding: 1.5rem;
       }
     }
   }
@@ -1238,33 +1279,50 @@ $dark-border: #1e293b;
     font-size: 2rem;
   }
 
-  .sobre .feedback-carousel {
-    height: 450px !important;
-
-    .feedback-container {
-      height: 380px !important;
+  .sobre {
+    .sobre-content .team-image {
+      height: 250px;
     }
 
-    .feedback-bubble .bubble-content {
-      padding: 1.5rem !important;
+    .sobre-content .sobre-stats {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+  }
 
-      .quote-icon {
-        font-size: 2rem !important;
-      }
+  .clientes .testimonials-carousel {
+    padding: 1.5rem 0;
 
-      .feedback-text {
-        font-size: 0.95rem !important;
-      }
+    .carousel-track {
+      padding: 1rem 0.5rem;
 
-      .feedback-author {
-        strong {
-          font-size: 1rem !important;
+      .testimonial-slide {
+        width: 90%;
+        min-width: 280px;
+        padding: 1.5rem;
+
+        .testimonial-rating .star {
+          font-size: 1rem;
         }
 
-        span {
-          font-size: 0.85rem !important;
+        .testimonial-text {
+          font-size: 0.9rem;
+        }
+
+        .testimonial-author {
+          strong {
+            font-size: 0.95rem;
+          }
+
+          span {
+            font-size: 0.8rem;
+          }
         }
       }
+    }
+
+    .carousel-dots {
+      margin-top: 1.5rem;
     }
   }
 
@@ -1274,11 +1332,6 @@ $dark-border: #1e293b;
 
   .footer .footer-content {
     grid-template-columns: 1fr;
-  }
-
-  .sobre .sobre-content .sobre-stats {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
   }
 
   .btn-whatsapp-large {

@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, HostListener, Inject } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostListener, Inject, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { TranslationService } from '../../services/translation.service';
 
 @Component({
@@ -6,7 +6,7 @@ import { TranslationService } from '../../services/translation.service';
   templateUrl: './landing-page.component.html',
   styleUrls: ['./landing-page.component.scss']
 })
-export class LandingPageComponent implements OnInit, OnDestroy {
+export class LandingPageComponent implements OnInit, OnDestroy, AfterViewInit {
   currentTheme: 'light' | 'dark' = 'light';
   currentLang: 'pt' | 'en' = 'pt';
   menuOpen = false;
@@ -16,6 +16,11 @@ export class LandingPageComponent implements OnInit, OnDestroy {
   currentFeedbacks: number[] = [];
   activeFeedbackIndex: number = 0;
   private feedbackInterval: any;
+
+  @ViewChild('carouselTrack') carouselTrack!: ElementRef<HTMLDivElement>;
+  private isDragging = false;
+  private startX = 0;
+  private scrollLeft = 0;
 
   constructor(@Inject(TranslationService) private translationService: TranslationService) {}
 
@@ -43,10 +48,83 @@ export class LandingPageComponent implements OnInit, OnDestroy {
     this.startFeedbackCarousel();
   }
 
+  ngAfterViewInit() {
+    this.setupDragScroll();
+  }
+
   ngOnDestroy() {
     if (this.feedbackInterval) {
       clearInterval(this.feedbackInterval);
     }
+  }
+
+  setupDragScroll() {
+    if (!this.carouselTrack) return;
+
+    const track = this.carouselTrack.nativeElement;
+
+    track.addEventListener('mousedown', (e: MouseEvent) => {
+      this.isDragging = true;
+      track.classList.add('dragging');
+      this.startX = e.pageX - track.offsetLeft;
+      this.scrollLeft = track.scrollLeft;
+    });
+
+    track.addEventListener('mouseleave', () => {
+      this.isDragging = false;
+      track.classList.remove('dragging');
+    });
+
+    track.addEventListener('mouseup', () => {
+      this.isDragging = false;
+      track.classList.remove('dragging');
+      this.updateActiveSlide();
+    });
+
+    track.addEventListener('mousemove', (e: MouseEvent) => {
+      if (!this.isDragging) return;
+      e.preventDefault();
+      const x = e.pageX - track.offsetLeft;
+      const walk = (x - this.startX) * 2;
+      track.scrollLeft = this.scrollLeft - walk;
+    });
+
+    // Touch events para mobile
+    track.addEventListener('touchstart', (e: TouchEvent) => {
+      this.startX = e.touches[0].pageX - track.offsetLeft;
+      this.scrollLeft = track.scrollLeft;
+    });
+
+    track.addEventListener('touchmove', (e: TouchEvent) => {
+      const x = e.touches[0].pageX - track.offsetLeft;
+      const walk = (x - this.startX) * 2;
+      track.scrollLeft = this.scrollLeft - walk;
+    });
+
+    track.addEventListener('touchend', () => {
+      this.updateActiveSlide();
+    });
+  }
+
+  updateActiveSlide() {
+    if (!this.carouselTrack) return;
+    
+    const track = this.carouselTrack.nativeElement;
+    const slideWidth = 320 + 16; // width + gap
+    const index = Math.round(track.scrollLeft / slideWidth);
+    this.activeFeedbackIndex = Math.max(0, Math.min(index, 4));
+  }
+
+  scrollToSlide(index: number) {
+    if (!this.carouselTrack) return;
+    
+    this.activeFeedbackIndex = index;
+    const track = this.carouselTrack.nativeElement;
+    const slideWidth = 320 + 16; // width + gap
+    track.scrollTo({
+      left: index * slideWidth,
+      behavior: 'smooth'
+    });
   }
 
   toggleTheme() {
